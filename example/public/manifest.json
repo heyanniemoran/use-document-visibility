@@ -1,0 +1,8 @@
+{
+  "short_name": "use-document-visibility",
+  "name": "use-document-visibility",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
