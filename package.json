@@ -1,6 +1,6 @@
 {
   "name": "@heyanniemoran/use-document-visibility",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "author": "heyanniemoran",
   "license": "MIT",
@@ -22,7 +22,7 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "react": "^16.9.0"
+    "react": "^18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

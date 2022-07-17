@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-npm install --save use-document-visibility
+npm i @heyanniemoran/use-document-visibility
 ```
 
 ## Usage
