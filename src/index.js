@@ -1,21 +1,31 @@
-import * as React from 'react'
+import React, { useState, useEffect } from 'react'
 
-export const useMyHook = () => {
-  let [{
-    counter
-  }, setState] = React.useState({
-    counter: 0
-  })
+export default function useDocumentVisibility() {
+  const [count, setCount] = useState(0);
+  const [visible, setVisible] = useState(false);
 
-  React.useEffect(() => {
-    let interval = window.setInterval(() => {
-      counter++
-      setState({counter})
-    }, 1000)
-    return () => {
-      window.clearInterval(interval)
-    }
-  }, [])
+  useEffect(() => {
+    document.addEventListener('visibilitychange', function() {
+      if (document.visibilityState == "visible") {
+        if (!visible) {
+          setCount(count+1);
+          setVisible(true);
+        }
+      } else setVisible(false);
+    })
+  });
 
-  return counter
-}
+  function onVisibilityChange(callback) {
+    document.addEventListener('visibilitychange', function() {
+      let isVisible = document.visibilityState;
+      callback(isVisible);
+    })
+  }
+
+  let obj = {
+    count: count,
+    visible: visible,
+    onVisibilityChange: onVisibilityChange
+  }
+  return (obj)
+};

@@ -1,6 +1,6 @@
 # use-document-visibility
 
-> 
+>
 
 [![NPM](https://img.shields.io/npm/v/use-document-visibility.svg)](https://www.npmjs.com/package/use-document-visibility) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
@@ -13,16 +13,30 @@ npm install --save use-document-visibility
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React from 'react'
+import useDocumentVisibility from '@heyanniemoran/use-document-visibility'
 
-import { useMyHook } from 'use-document-visibility'
+const LeaveTabCounter = () => {
+  const { count, visible, onVisibilityChange } = useDocumentVisibility();
 
-const Example = () => {
-  const example = useMyHook()
+  useEffect(() => {
+    onVisibilityChange((isVisible) => {
+      console.log('first handler', isVisible)
+    });
+    onVisibilityChange((isVisible) => {
+      console.log('second handler', isVisible)
+    });
+  }, [])
+
   return (
-    <div>{example}</div>
-  )
-}
+    <div>
+      <span>
+        Вы покинули страницу: {count} раз
+        Вкладка активна? {visible ? 'да' : 'нет'}
+      </span>
+    </div>
+  );
+};
 ```
 
 ## License
