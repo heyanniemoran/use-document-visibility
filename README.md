@@ -13,7 +13,7 @@ npm i @heyanniemoran/use-document-visibility
 ## Usage
 
 ```jsx
-import React from 'react'
+import React, { useEffect } from 'react'
 import useDocumentVisibility from '@heyanniemoran/use-document-visibility'
 
 const LeaveTabCounter = () => {
