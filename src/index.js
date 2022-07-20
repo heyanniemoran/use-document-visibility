@@ -7,10 +7,8 @@ export default function useDocumentVisibility() {
   useEffect(() => {
     function handler() {
       if (document.visibilityState == "visible") {
-        if (!visible) {
-          setCount(count + 1);
-          setVisible(true);
-        }
+        setCount(count => count + 1);
+        setVisible(true);
       } else setVisible(false);
     }
 
