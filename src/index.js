@@ -13,15 +13,19 @@ export default function useDocumentVisibility() {
     }
 
     document.addEventListener("visibilitychange", handler);
-    return function cleanup() {
+    return () => {
       document.removeEventListener("visibilitychange", handler);
-    }
+    };
   }, []);
 
   function onVisibilityChange(callback) {
-    document.addEventListener("visibilitychange", function () {
+    function handler() {
       callback(document.visibilityState);
-    });
+    }
+    document.addEventListener("visibilitychange", handler);
+    return () => {
+      document.removeEventListener("visibilitychange", handler);
+    };
   }
 
   return { count, visible, onVisibilityChange};
