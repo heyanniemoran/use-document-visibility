@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 
 export default function useDocumentVisibility() {
+  const callbacks = useRef([]);
   const [count, setCount] = useState(0);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     function handler() {
-      if (document.visibilityState == "visible") {
-        setCount(count => count + 1);
-        setVisible(true);
-      } else setVisible(false);
+      const newVisible = document.visibilityState === "visible";
+      if (newVisible) {
+        setCount((count) => count + 1);
+      }
+      setVisible(newVisible);
+      callbacks.current.forEach((el) => {
+        el(newVisible);
+      });
     }
 
     document.addEventListener("visibilitychange", handler);
@@ -19,12 +24,12 @@ export default function useDocumentVisibility() {
   }, []);
 
   function onVisibilityChange(callback) {
-    function handler() {
-      callback(document.visibilityState);
-    }
-    document.addEventListener("visibilitychange", handler);
+    callbacks.current.push(callback);
     return () => {
-      document.removeEventListener("visibilitychange", handler);
+      const index = callbacks.current.indexOf(callback);
+      if (index > -1) {
+        callbacks.current.splice(index, 1);
+      }
     };
   }
 
