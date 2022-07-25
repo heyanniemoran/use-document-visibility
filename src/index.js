@@ -7,13 +7,12 @@ export default function useDocumentVisibility() {
 
   useEffect(() => {
     function handler() {
-      const visibleState = document.visibilityState === "visible";
-      if (visibleState) {
+      if (!document.hidden) {
         setCount((count) => count + 1);
       }
-      setVisible(visibleState);
+      setVisible(!document.hidden);
       callbacks.current.forEach((callback) => {
-        callback(visibleState);
+        callback(!document.hidden);
       });
     }
 
