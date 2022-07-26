@@ -1,6 +1,6 @@
 {
   "name": "@heyanniemoran/use-document-visibility",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "",
   "author": "heyanniemoran",
   "license": "MIT",
@@ -8,6 +8,7 @@
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
+  "files": ["dist/*"],
   "engines": {
     "node": ">=8",
     "npm": ">=5"
